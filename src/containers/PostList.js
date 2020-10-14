@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import { Divider , Header, Item } from "semantic-ui-react";
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import {api} from '../api'
 
 
 
@@ -17,7 +18,7 @@ function PostList() {
       setLoading(true);
 
       try {
-        const res = await axios.get("http://127.0.0.1:8000/api/posts/");
+        const res = await axios.get(api.posts.list);
 
         setPosts(res.data);
         setLoading(false);
