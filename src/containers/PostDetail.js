@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Header, Image , Divider, Button ,  Modal} from "semantic-ui-react";
+import ReactMarkdown from 'react-markdown'
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { useParams } from "react-router-dom";
@@ -93,9 +94,8 @@ function PostDetail() {
               {data.title}
               
           </Header>
-          <Header as='h4'>Last Updated:{`${new Date(data.last_updated).toLocaleDateString()}`}</Header>
-          <p>{data.content}</p>
-
+          <Header as='h4'>Last Updated:{`${new Date(data.last_updated).toLocaleDateString()}`}</Header> 
+          <ReactMarkdown source={data.content}/>
           <Divider/>
           <DeleteModal postSlug={postSlug} title={data.title} thumbnail={data.thumbnail} />
         </div>

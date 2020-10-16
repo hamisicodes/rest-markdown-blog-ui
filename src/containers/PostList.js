@@ -5,7 +5,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import {api} from '../api';
 import { useFetch } from '../helpers';
-
+import ReactMarkdown from 'react-markdown'
 
 function PostList() {
   
@@ -26,7 +26,7 @@ function PostList() {
                 <NavLink to={`/posts/${post.slug}`}>
                 <Item.Header as="h3">{post.title}</Item.Header>
                 </NavLink>
-                  <Item.Description>{post.content}</Item.Description>
+                <ReactMarkdown source={post.content}/>
                 </Item.Content>
               </Item>
               )
