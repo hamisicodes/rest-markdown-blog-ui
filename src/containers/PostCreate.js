@@ -34,23 +34,23 @@ function PostCreate() {
     formData.append("title", title);
     console.log(formData);
 
-    // axios
-    //   .post(api.posts.create, formData, {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //       Authorization: "Token f56f5d6e609346809413e47ecdae118f5dfcc234",
-    //     },
-    //   })
-    //   .then((res) => {
+    axios
+      .post(api.posts.create, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Token f56f5d6e609346809413e47ecdae118f5dfcc234",
+        },
+      })
+      .then((res) => {
       
-    //     setLoading(false);
-    //     // redirect back to postlist
-    //     history.push("/");
-    //   })
-    //   .catch((err) => {
-    //     setLoading(false);
-    //     setError(err.message || err);
-    //   });
+        setLoading(false);
+        // redirect back to postlist
+        history.push("/");
+      })
+      .catch((err) => {
+        setLoading(false);
+        setError(err.message || err);
+      });
   }
 
   return (
