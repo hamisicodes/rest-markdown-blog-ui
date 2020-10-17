@@ -7,6 +7,7 @@ import Layout from './containers/Layout';
 import PostDetail from './containers/PostDetail';
 import PostCreate from './containers/PostCreate';
 import PostUpdate from './containers/PostUpdate';
+import Login from './containers/Login';
 
 
 
@@ -16,15 +17,13 @@ function App() {
   return (
     <Router history={history}>
       <Layout>
-        <Switch>
-          
+        <Switch>    
           <Route exact path="/" component={PostList} />
           <Route path="/create" component={PostCreate} />
           <Route exact path="/posts/:postSlug" component={PostDetail} />
           <Route path="/posts/:postSlug/update" component={PostUpdate} />
-         
-         
-
+          <Route path="/posts/:postSlug/update" component={PostUpdate} />
+          <Route path="/login" component={Login} />
         </Switch>
       </Layout>
     </Router>

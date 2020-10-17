@@ -5,8 +5,8 @@ import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import { history } from "../helpers";
 import Message from "../components/Message";
-import axios from "axios";
 import { api } from "../api";
+import { authAxios } from '../services'
 
 
 function PostCreate() {
@@ -34,11 +34,11 @@ function PostCreate() {
     formData.append("title", title);
     console.log(formData);
 
-    axios
+    authAxios
       .post(api.posts.create, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: "Token f56f5d6e609346809413e47ecdae118f5dfcc234",
+          
         },
       })
       .then((res) => {
