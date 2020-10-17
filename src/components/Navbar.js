@@ -32,7 +32,7 @@ const Navbar = () => {
             <NavLink to="/login">
               <Menu.Item as="li">login</Menu.Item>
             </NavLink>
-            <NavLink to="/login">
+            <NavLink to="/signup">
             <Menu.Item as="li">Sign up</Menu.Item>
             </NavLink>
             </>

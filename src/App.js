@@ -8,6 +8,7 @@ import PostDetail from './containers/PostDetail';
 import PostCreate from './containers/PostCreate';
 import PostUpdate from './containers/PostUpdate';
 import Login from './containers/Login';
+import Signup from './containers/Signup';
 
 
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/posts/:postSlug/update" component={PostUpdate} />
           <Route path="/posts/:postSlug/update" component={PostUpdate} />
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
         </Switch>
       </Layout>
     </Router>

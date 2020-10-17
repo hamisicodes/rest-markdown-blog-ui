@@ -3,7 +3,8 @@ const baseUrl = process.env.NODE_ENV === 'development'? "http://127.0.0.1:8000":
 console.log(process.env)
 export const api = {
     auth:{
-        login: `${baseUrl}/dj-rest-auth/login/`
+        login: `${baseUrl}/dj-rest-auth/login/`,
+        register:`${baseUrl}/dj-rest-auth/registration/`
     },
     posts:{
         list:`${baseUrl}/api/posts/`,
