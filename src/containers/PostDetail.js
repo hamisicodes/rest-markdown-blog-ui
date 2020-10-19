@@ -3,10 +3,10 @@ import { Container, Header, Image , Divider, Button ,  Modal} from "semantic-ui-
 import ReactMarkdown from 'react-markdown'
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import {api} from '../api';
 import { useFetch,history } from '../helpers';
-import axios from "axios"
+import { authAxios } from '../services'
 
 function DeleteModal({ thumbnail,title,postSlug}) {
   const [open, setOpen] = useState(false);
@@ -17,13 +17,8 @@ function DeleteModal({ thumbnail,title,postSlug}) {
   
     setLoading(true);
 
-    axios
-      .delete(api.posts.delete(postSlug), {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: "Token f56f5d6e609346809413e47ecdae118f5dfcc234",
-        },
-      })
+    authAxios
+      .delete(api.posts.delete(postSlug))
       .then((res) => {
       
         setLoading(false);
@@ -84,7 +79,7 @@ function PostDetail() {
 
 
   return (
-    <Container text>
+    <Container text style={{paddingTop:10 , paddingBottom:10}}>
       {error && <Message negative message={error} />}
       {loading && <Loader />}
       {data && (
@@ -97,7 +92,17 @@ function PostDetail() {
           <Header as='h4'>Last Updated:{`${new Date(data.last_updated).toLocaleDateString()}`}</Header> 
           <ReactMarkdown source={data.content}/>
           <Divider/>
-          <DeleteModal postSlug={postSlug} title={data.title} thumbnail={data.thumbnail} />
+          {data.is_author &&(
+            <>
+            <NavLink to={`/posts/${postSlug}/update`}>
+            <Button color='yellow' >
+              update
+            </Button>
+            </NavLink>
+            <DeleteModal postSlug={postSlug} title={data.title} thumbnail={data.thumbnail} />
+            </>
+          )}
+
         </div>
       )}
     </Container>

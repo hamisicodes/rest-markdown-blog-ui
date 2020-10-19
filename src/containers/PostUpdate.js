@@ -2,7 +2,7 @@ import React, { useState , useRef} from 'react';
 import { Header, Button, Form ,  Image, Divider } from "semantic-ui-react";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import {api} from '../api';
 import { useFetch } from '../helpers';
 
@@ -10,8 +10,9 @@ import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import { history } from "../helpers";
+import { authAxios } from '../services'
 
-import axios from "axios";
+
 
 function PostUpdateForm({ postSlug ,initialTitle , initialContent , initialThumbnail}) {
     
@@ -46,11 +47,11 @@ function PostUpdateForm({ postSlug ,initialTitle , initialContent , initialThumb
 
         console.log(formData);
     
-        axios
+        authAxios
           .put(api.posts.update(postSlug), formData, {
             headers: {
               "Content-Type": "multipart/form-data",
-              Authorization: "Token f56f5d6e609346809413e47ecdae118f5dfcc234",
+             
             },
           })
           .then((res) => {
@@ -119,8 +120,14 @@ function PostUpdateForm({ postSlug ,initialTitle , initialContent , initialThumb
 
 const PostUpdate = () => {
 
+    
+
     const { postSlug } = useParams();
     const {data,loading,error} = useFetch(api.posts.retrieve(postSlug))
+
+    if(data && data.is_author === false){
+      return <Redirect to="/" />
+    }
 
     return(
         <>

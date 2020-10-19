@@ -24,7 +24,6 @@ function App() {
           <PrivateRoute path="/create" component={PostCreate} />
           <Route exact path="/posts/:postSlug" component={PostDetail} />
           <Route path="/posts/:postSlug/update" component={PostUpdate} />
-          <Route path="/posts/:postSlug/update" component={PostUpdate} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
         </Switch>
